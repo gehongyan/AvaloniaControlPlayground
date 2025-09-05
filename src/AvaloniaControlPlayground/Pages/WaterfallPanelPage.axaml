@@ -1,0 +1,58 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:data="clr-namespace:AvaloniaControlPlayground.Data"
+             xmlns:waterfallPanel="clr-namespace:AvaloniaControlPlayground.Controls.WaterfallPanel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaControlPlayground.Pages.WaterfallPanelPage">
+  <DockPanel>
+    <DockPanel DockPanel.Dock="Top">
+      <ToggleSwitch DockPanel.Dock="Right"
+                    OnContent="水平"
+                    OffContent="垂直"
+                    IsCheckedChanged="OrientationToggleSwitch_OnIsCheckedChanged" />
+      <Slider Name="CountSlider"
+              Margin="10"
+              Orientation="Horizontal"
+              Minimum="1"
+              Maximum="50"
+              TickFrequency="1"
+              Value="10"
+              ValueChanged="CountSlider_OnValueChanged" />
+    </DockPanel>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+      <ItemsControl Name="RectangleItemsControl"
+                    BorderThickness="1"
+                    BorderBrush="Gray"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="0,10">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <waterfallPanel:WaterfallPanel
+              VerticalAlignment="Top"
+              Orientation="Vertical"
+              MaxColumns="3" />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+          <DataTemplate DataType="data:IndexedRectangle">
+            <Panel>
+              <ContentPresenter Content="{Binding Rectangle}" />
+              <Border
+                Background="#CCFFFFFF"
+                Padding="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <TextBlock Text="{Binding Index}" />
+              </Border>
+            </Panel>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
+  </DockPanel>
+
+</UserControl>

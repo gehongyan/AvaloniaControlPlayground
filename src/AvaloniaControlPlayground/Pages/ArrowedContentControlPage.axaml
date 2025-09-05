@@ -1,0 +1,55 @@
+﻿<UserControl
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:u="https://irihi.tech/ursa"
+  xmlns:controls="clr-namespace:AvaloniaControlPlayground.Controls"
+  xmlns:pages="clr-namespace:AvaloniaControlPlayground.Pages"
+  mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+  x:Class="AvaloniaControlPlayground.Pages.ArrowedContentControlPage">
+  <DockPanel>
+    <u:Form DockPanel.Dock="Right" Width="300" Margin="8">
+      <Slider u:FormItem.Label="Width" Name="Width" Minimum="100" Maximum="600" Value="200" />
+      <Slider u:FormItem.Label="Height" Name="Height" Minimum="100" Maximum="600" Value="100" />
+      <Slider u:FormItem.Label="StrokeThickness" Name="StrokeThickness" Minimum="0" Maximum="10" Value="1" />
+      <CheckBox u:FormItem.Label="ShowArrow" Name="ShowArrow" IsChecked="True" />
+      <u:EnumSelector
+        u:FormItem.Label="ArrowPlacement"
+        EnumType="controls:ArrowPlacement"
+        Name="ArrowPlacement"
+        HorizontalAlignment="Stretch"
+        Value="{x:Static controls:ArrowPlacement.BottomEdgeAlignedLeft}" />
+      <Slider u:FormItem.Label="ArrowSize" Name="ArrowSize" Minimum="5" Maximum="200" Value="20" />
+      <Slider u:FormItem.Label="ArrowRadius" Name="ArrowRadius" Minimum="0" Maximum="50" Value="2" />
+      <Slider u:FormItem.Label="ArrowRatio" Name="ArrowRatio" Minimum="0" Maximum="5" Value="1" />
+      <Slider u:FormItem.Label="ArrowOffset" Name="ArrowOffset" Minimum="0" Maximum="200" Value="20" />
+      <CheckBox u:FormItem.Label="ShowContent" Name="ShowContent" IsChecked="True" />
+      <Slider
+        u:FormItem.Label="Padding"
+        Name="Padding"
+        Minimum="{Binding #StrokeThickness.Value}"
+        Maximum="50"
+        IsEnabled="{Binding #ShowContent.IsChecked}" />
+    </u:Form>
+    <controls:ArrowedContentControl
+      Fill="Bisque"
+      Stroke="HotPink"
+      StrokeThickness="{Binding #StrokeThickness.Value}"
+      Width="{Binding #Width.Value}"
+      Height="{Binding #Height.Value}"
+      ShowArrow="{Binding #ShowArrow.IsChecked}"
+      ArrowPlacement="{Binding #ArrowPlacement.Value}"
+      ArrowSize="{Binding #ArrowSize.Value}"
+      ArrowRadius="{Binding #ArrowRadius.Value}"
+      ArrowRatio="{Binding #ArrowRatio.Value}"
+      ArrowOffset="{Binding #ArrowOffset.Value}"
+      Padding="{Binding #Padding.Value, Converter={x:Static pages:ArrowedContentControlPage.DoubleThicknessConverter}}">
+      <TextBlock
+        Name="ArrowContext"
+        TextWrapping="Wrap"
+        IsVisible="{Binding #ShowContent.IsChecked}"
+        Margin="{Binding #Padding.Value}" />
+    </controls:ArrowedContentControl>
+  </DockPanel>
+</UserControl>

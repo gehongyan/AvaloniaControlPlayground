@@ -1,0 +1,31 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:AvaloniaControlPlayground.Controls">
+  <ControlTheme x:Key="{x:Type controls:ArrowedContentControl}"
+                TargetType="controls:ArrowedContentControl">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel VerticalAlignment="{TemplateBinding VerticalAlignment}"
+               HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+          <controls:ArrowedRectangle Name="PART_ArrowedRectangle"
+                                     ArrowPlacement="{TemplateBinding ArrowPlacement}"
+                                     ArrowSize="{TemplateBinding ArrowSize}"
+                                     ArrowRadius="{TemplateBinding ArrowRadius}"
+                                     ArrowRatio="{TemplateBinding ArrowRatio}"
+                                     ShowArrow="{TemplateBinding ShowArrow}"
+                                     ArrowOffset="{TemplateBinding ArrowOffset}"
+                                     Fill="{TemplateBinding Fill}"
+                                     Stroke="{TemplateBinding Stroke}"
+                                     StrokeThickness="{TemplateBinding StrokeThickness}" />
+          <ContentPresenter Name="PART_ContentPresenter"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Content="{TemplateBinding Content}"
+                            Padding="{TemplateBinding Padding}"
+                            RecognizesAccessKey="True"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

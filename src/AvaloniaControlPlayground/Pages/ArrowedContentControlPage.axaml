@@ -10,46 +10,46 @@
   x:Class="AvaloniaControlPlayground.Pages.ArrowedContentControlPage">
   <DockPanel>
     <u:Form DockPanel.Dock="Right" Width="300" Margin="8">
-      <Slider u:FormItem.Label="Width" Name="Width" Minimum="100" Maximum="600" Value="200" />
-      <Slider u:FormItem.Label="Height" Name="Height" Minimum="100" Maximum="600" Value="100" />
-      <Slider u:FormItem.Label="StrokeThickness" Name="StrokeThickness" Minimum="0" Maximum="10" Value="1" />
-      <CheckBox u:FormItem.Label="ShowArrow" Name="ShowArrow" IsChecked="True" />
+      <Slider u:FormItem.Label="Width" Name="WidthSlider" Minimum="100" Maximum="600" Value="200" />
+      <Slider u:FormItem.Label="Height" Name="HeightSlider" Minimum="100" Maximum="600" Value="100" />
+      <Slider u:FormItem.Label="StrokeThickness" Name="StrokeThicknessSlider" Minimum="0" Maximum="10" Value="1" />
+      <CheckBox u:FormItem.Label="ShowArrow" Name="ShowArrowCheckBox" IsChecked="True" />
       <u:EnumSelector
         u:FormItem.Label="ArrowPlacement"
         EnumType="controls:ArrowPlacement"
-        Name="ArrowPlacement"
+        Name="ArrowPlacementSelector"
         HorizontalAlignment="Stretch"
         Value="{x:Static controls:ArrowPlacement.BottomEdgeAlignedLeft}" />
-      <Slider u:FormItem.Label="ArrowSize" Name="ArrowSize" Minimum="5" Maximum="200" Value="20" />
-      <Slider u:FormItem.Label="ArrowRadius" Name="ArrowRadius" Minimum="0" Maximum="50" Value="2" />
-      <Slider u:FormItem.Label="ArrowRatio" Name="ArrowRatio" Minimum="0" Maximum="5" Value="1" />
-      <Slider u:FormItem.Label="ArrowOffset" Name="ArrowOffset" Minimum="0" Maximum="200" Value="20" />
-      <CheckBox u:FormItem.Label="ShowContent" Name="ShowContent" IsChecked="True" />
+      <Slider u:FormItem.Label="ArrowSize" Name="ArrowSizeSlider" Minimum="5" Maximum="200" Value="20" />
+      <Slider u:FormItem.Label="ArrowRadius" Name="ArrowRadiusSlider" Minimum="0" Maximum="50" Value="2" />
+      <Slider u:FormItem.Label="ArrowRatio" Name="ArrowRatioSlider" Minimum="0" Maximum="5" Value="1" />
+      <Slider u:FormItem.Label="ArrowOffset" Name="ArrowOffsetSlider" Minimum="0" Maximum="200" Value="20" />
+      <CheckBox u:FormItem.Label="ShowContent" Name="ShowContentCheckBox" IsChecked="True" />
       <Slider
         u:FormItem.Label="Padding"
-        Name="Padding"
-        Minimum="{Binding #StrokeThickness.Value}"
+        Name="PaddingSlider"
+        Minimum="{Binding #StrokeThicknessSlider.Value}"
         Maximum="50"
-        IsEnabled="{Binding #ShowContent.IsChecked}" />
+        IsEnabled="{Binding #ShowContentCheckBox.IsChecked}" />
     </u:Form>
     <controls:ArrowedContentControl
       Fill="Bisque"
       Stroke="HotPink"
-      StrokeThickness="{Binding #StrokeThickness.Value}"
-      Width="{Binding #Width.Value}"
-      Height="{Binding #Height.Value}"
-      ShowArrow="{Binding #ShowArrow.IsChecked}"
-      ArrowPlacement="{Binding #ArrowPlacement.Value}"
-      ArrowSize="{Binding #ArrowSize.Value}"
-      ArrowRadius="{Binding #ArrowRadius.Value}"
-      ArrowRatio="{Binding #ArrowRatio.Value}"
-      ArrowOffset="{Binding #ArrowOffset.Value}"
-      Padding="{Binding #Padding.Value, Converter={x:Static pages:ArrowedContentControlPage.DoubleThicknessConverter}}">
+      StrokeThickness="{Binding #StrokeThicknessSlider.Value}"
+      Width="{Binding #WidthSlider.Value}"
+      Height="{Binding #HeightSlider.Value}"
+      ShowArrow="{Binding #ShowArrowCheckBox.IsChecked}"
+      ArrowPlacement="{Binding #ArrowPlacementSelector.Value}"
+      ArrowSize="{Binding #ArrowSizeSlider.Value}"
+      ArrowRadius="{Binding #ArrowRadiusSlider.Value}"
+      ArrowRatio="{Binding #ArrowRatioSlider.Value}"
+      ArrowOffset="{Binding #ArrowOffsetSlider.Value}"
+      Padding="{Binding #PaddingSlider.Value, Converter={x:Static pages:ArrowedContentControlPage.DoubleThicknessConverter}}">
       <TextBlock
         Name="ArrowContext"
         TextWrapping="Wrap"
-        IsVisible="{Binding #ShowContent.IsChecked}"
-        Margin="{Binding #Padding.Value}" />
+        IsVisible="{Binding #ShowContentCheckBox.IsChecked}"
+        Margin="{Binding #PaddingSlider.Value}" />
     </controls:ArrowedContentControl>
   </DockPanel>
 </UserControl>
